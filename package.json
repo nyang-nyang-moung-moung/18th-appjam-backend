@@ -1,0 +1,36 @@
+{
+  "name": "appjam18",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "start": "nodemon app.js --exec babel-node",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "set": "npm install --save-dev babel-cli babel-preset-es2015 babel-preset-stage-2"
+  },
+  "dependencies": {
+      "body-parser": "~1.15.1",
+      "express": "^3.21.2",
+      "moment": "^2.24.0",
+      "mongoose": "*",
+      "nodemon": "^1.18.10",
+      "jsonwebtoken": "^8.4.0",
+      "multiparty": "^4.2.1",
+      "path": "^0.12.7",
+      "randomstring": "^1.1.5"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-core": "^6.26.0",
+    "babel-plugin-transform-function-bind": "^6.22.0",
+    "babel-plugin-transform-regenerator": "^6.26.0",
+    "babel-preset-env": "^1.6.0",
+    "babel-preset-es2015": "^6.24.1",
+    "babel-preset-stage-2": "^6.24.1",
+    "babel-preset-stage-3": "^6.24.1",
+    "swagger-jsdoc": "^3.2.8",
+    "swagger-ui-express": "^4.0.2"
+  }
+}
