@@ -12,7 +12,7 @@ app.use(bodyParser.urlencoded({
 }));
 
 //module setting
-// import { Users, Groups, Boards } from './mongo';
+import { Users, Groups, Boards } from './mongo';
 
 // Swagger definition
 // You can set every attribute except paths and swagger
