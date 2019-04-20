@@ -11,6 +11,9 @@ app.use(bodyParser.urlencoded({
     extended: false
 }));
 
+// set the secret key
+app.set('jwt-secret', config.secret)
+
 //module setting
 import { Users, Groups, Boards } from './mongo';
 
@@ -51,7 +54,7 @@ app.listen(PORT, function() {
     console.log('server running in ' + PORT);
 });
 
-// require('./routes/auth/auth')(app, Users);
+require('./routes/auth/auth')(app, Users);
 // require('./routes/group/getGroup')(app, Users, Groups);
 // require('./routes/group/setGroup')(app, Users, Groups);
 // require('./routes/index')(app);
