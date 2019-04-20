@@ -37,17 +37,11 @@ module.exports = (app, Users, Images)=>{
 
             let file = __dirname + '/public'
             const options = {
-              url: file,
-              dest: '/tmp.jpg'                  // Save to /path/to/dest/image.jpg
+              url: element.url,
+              dest: file+'/tmp.jpg'                  // Save to /path/to/dest/image.jpg
             }
             
             await download.image(options)
-            .then(({ filename, image }) => {
-              console.log('File saved to', filename)
-            })
-            .catch((err) => {
-              console.error(err)
-            })
             
             var api_url = 'https://openapi.naver.com/v1/vision/face'; // 얼굴 감지
             var _formData = {
@@ -61,7 +55,8 @@ module.exports = (app, Users, Images)=>{
             });
             // console.log(_req)
 
-            res.status(200).json(image);
+            _req.pipe(res);
+            // res.status(200).json(_req);
         });
     }
   })
