@@ -16,6 +16,12 @@ let ImageSchema = mongoose.Schema({ //회원
     token: { type: String }, // 토큰
     id: { type: String }, //이름
     url: { type: String }, //이메일(아이디)
+    roi: [{
+        x: String,
+        y: String,
+        width: String,
+        height: String
+    }], //얼굴크기
     age: { type: String } //나이
 });
 
@@ -28,20 +34,20 @@ let UserSchema = mongoose.Schema({ //회원
     age: { type: String } //나이
 });
 
-UserSchema.statics.create = function(name, email, password, interest_main) {
+UserSchema.statics.create = function( id, name, password, age ) {
     const user = new this({
+        id,
         name,
-        email,
         password,
-        interest_main
+        age
     });
 
     return user.save();
 };
 
-UserSchema.statics.findOneByEmail = function(email) {
+UserSchema.statics.findOneById = function(id) {
     return this.findOne({
-        email
+        id
     }).exec();
 }
 

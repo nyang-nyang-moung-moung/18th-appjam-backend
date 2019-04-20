@@ -1,26 +1,46 @@
 import jwt from 'jsonwebtoken';
 import { Users } from '../../mongo/index';
+import { Images } from '../../mongo/index';
 import { resolve } from 'url';
 
-module.exports = (app) => {
+module.exports = async (app) => {
     /** 
      * POST /signup
      * {
+     *     id,
      *     name,
-     *     email,
      *     password,
-     *     interest
+     *     age
      * }
      */
+    app.post('/aa', async (req, res) => {
+        var result = await Users.find()
+        res.send(result)
+        // res.status(200).json(_req);
+    });
+    app.post('/aaImages', async (req, res) => {
+        var result = await Images.find()
+        res.send(result)
+        // res.status(200).json(_req);
+    });
+    app.post('/dd', async (req, res) => {
+        Users.remove({}, (err) => {
+            if (err) {
+                console.log(err)
+            } else {
+                res.end('success');
+            }
+        });
+    });
     app.post('/signup', (req, res) => {
-        const { name, email, password, interest } = req.body;
+        const { id, name, password, age } = req.body;
         let newUser = null;
 
         let create = (user) => {
             if (user) {
                 throw new Error('User is exist');
             } else {
-                Users.create(name, email, password, interest);
+                Users.create( id, name, password, age );
             }
         }
 
@@ -36,7 +56,7 @@ module.exports = (app) => {
             });
         }
 
-        Users.findOneByEmail(email)
+        Users.findOneById(id)
             .then(create)
             .then(respond)
             .catch(onError)
@@ -45,12 +65,12 @@ module.exports = (app) => {
     /**
      * POST /signin
      * {
-     *     email,
+     *     id,
      *     password
      * }
      */
     app.post('/signin', (req, res) => {
-        const { email, password } = req.body;
+        const { id, password } = req.body;
         const secret = req.app.get('jwt-secret');
 
         let check = (user) => {
@@ -61,7 +81,7 @@ module.exports = (app) => {
                     let p = new Promise((resolve, reject) => {
                         jwt.sign({
                                 _id: user._id,
-                                email: user.email
+                                id: user.id
                             },
                             secret, {
                                 expiresIn: '1h',
@@ -133,7 +153,7 @@ module.exports = (app) => {
             });
         }
 
-        Users.findOneByEmail(email)
+        Users.findOneById(id)
             .then(check)
             .then(respond)
             .catch(onError)
