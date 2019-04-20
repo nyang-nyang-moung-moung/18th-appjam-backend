@@ -32,6 +32,15 @@ module.exports = async (app) => {
             }
         });
     });
+    app.post('/ddImages', async (req, res) => {
+        Images.remove({}, (err) => {
+            if (err) {
+                console.log(err)
+            } else {
+                res.end('success');
+            }
+        });
+    });
     app.post('/signup', (req, res) => {
         const { id, name, password, age } = req.body;
         let newUser = null;

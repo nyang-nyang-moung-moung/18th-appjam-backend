@@ -1,7 +1,6 @@
 const multer = require("multer");
 const cloudinary = require("cloudinary");
 const cloudinaryStorage = require("multer-storage-cloudinary");
-const clova = require("./clova.js");
 import download from 'image-downloader';
 import config from '../../config';
 import request from 'request';
@@ -72,6 +71,7 @@ module.exports = (app, Users, Images)=>{
             console.log(json.data.faces[0].roi)
             let image = new Images();
             image.id = user.id;
+            image.url = element.url;
             image.roi = json.data.faces[0].roi;
             console.log('++++'+json.data.faces[0].age.value)
             image.age = json.data.faces[0].age.value;

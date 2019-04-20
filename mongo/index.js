@@ -22,7 +22,8 @@ let ImageSchema = mongoose.Schema({ //회원
         width: String,
         height: String
     }], //얼굴크기
-    age: { type: String } //나이
+    age: { type: String }, //나이
+    date: {type: Date, default: Date.now} //생성 날짜
 });
 
 let UserSchema = mongoose.Schema({ //회원

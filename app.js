@@ -59,6 +59,7 @@ app.listen(PORT, function() {
 
 require('./routes/auth/auth')(app, Users);
 require('./routes/picture/setPicture')(app, Users, Images);
+require('./routes/picture/getPictures')(app, Images);
 // require('./routes/board/setBoard')(app, Users, Groups, Boards);
 // require('./routes/board/viewBoard')(app, Users, Boards, Comments);
 // require('./routes/group/getGroup')(app, Users, Groups);
