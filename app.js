@@ -18,7 +18,7 @@ app.use(bodyParser.urlencoded({
 app.set('jwt-secret', config.secret)
 
 //module setting
-import { Users, Groups, Boards, Comments } from './mongo';
+import { Users, Images } from './mongo';
 
 // Swagger definition
 // You can set every attribute except paths and swagger
@@ -58,8 +58,9 @@ app.listen(PORT, function() {
 });
 
 require('./routes/auth/auth')(app, Users);
-require('./routes/board/setBoard')(app, Users, Groups, Boards);
-require('./routes/board/viewBoard')(app, Users, Boards, Comments);
+require('./routes/picture/setPicture')(app, Users, Images);
+// require('./routes/board/setBoard')(app, Users, Groups, Boards);
+// require('./routes/board/viewBoard')(app, Users, Boards, Comments);
 // require('./routes/group/getGroup')(app, Users, Groups);
 // require('./routes/group/setGroup')(app, Users, Groups);
 // require('./routes/index')(app);
